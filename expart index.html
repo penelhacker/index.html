@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Expert owner penel</title>
+    <style>
+        :root {
+            --neon-green: #00ff88;
+            --dark-bg: #0b0c0d;
+            --card-bg: #141916;
+            --text-gold: #f9d342;
+        }
+
+        * { box-sizing: border-box; font-family: 'Segoe UI', sans-serif; }
+        body {
+            background-color: var(--dark-bg);
+            color: #ffffff;
+            margin: 0;
+            padding: 10px;
+            display: flex;
+            justify-content: center;
+        }
+
+        .app-container {
+            width: 100%;
+            max-width: 380px;
+            background: #08090a;
+            border-radius: 20px;
+            padding: 15px;
+            box-shadow: 0 0 20px rgba(0,0,0,0.5);
+        }
+
+        /* Top Header */
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+            border-bottom: 1px solid #222;
+            padding-bottom: 10px;
+        }
+
+        .logo-area { display: flex; align-items: center; gap: 10px; }
+        .logo-img {
+            width: 40px; height: 40px;
+            border-radius: 50%;
+            background: #222;
+            border: 2px solid var(--neon-green);
+            box-shadow: 0 0 10px var(--neon-green);
+        }
+
+        .ai-badge {
+            background: rgba(0, 255, 136, 0.1);
+            color: var(--neon-green);
+            padding: 5px 10px;
+            border-radius: 15px;
+            font-size: 10px;
+            font-weight: bold;
+            border: 1px solid var(--neon-green);
+        }
+
+        .wingo-header {
+            background: var(--card-bg);
+            border-radius: 15px;
+            padding: 15px;
+            margin-bottom: 15px;
+            border: 1px solid #222;
+        }
+
+        .modes-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 12px;
+        }
+
+        .mode-card {
+            background: #1a1f1c;
+            border: 1px solid #252a27;
+            border-radius: 15px;
+            padding: 15px;
+            text-align: center;
+            position: relative;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        .mode-card:hover { border-color: var(--neon-green); }
+        .mode-card.locked { opacity: 0.6; cursor: not-allowed; }
+
+        .time-badge {
+            position: absolute;
+            top: 8px;
+            right: 8px;
+            font-size: 9px;
+            color: var(--neon-green);
+            border: 1px solid var(--neon-green);
+            padding: 2px 6px;
+            border-radius: 5px;
+        }
+
+        .mode-card strong { display: block; font-size: 13px; color: #fff; }
+        .mode-card small { font-size: 10px; color: #666; }
+
+        .lock-icon { font-size: 20px; margin: 10px 0; color: var(--text-gold); }
+
+        .tg-btn {
+            display: block;
+            background: #0088cc;
+            color: white;
+            text-align: center;
+            padding: 12px;
+            border-radius: 12px;
+            text-decoration: none;
+            font-weight: bold;
+            margin-top: 20px;
+            font-size: 14px;
+        }
+
+        .hidden { display: none; }
+        .password-box { text-align: center; padding: 40px 20px; }
+        input {
+            width: 100%; padding: 12px; margin: 15px 0;
+            background: #000; border: 1px solid var(--neon-green);
+            color: #fff; border-radius: 8px; text-align: center;
+        }
+        .unlock-btn {
+            background: var(--neon-green); color: #000;
+            border: none; padding: 12px 30px; border-radius: 8px;
+            font-weight: bold; cursor: pointer; width: 100%;
+        }
+
+        .result-box {
+            background: linear-gradient(180deg, #141916 0%, #0b0c0d 100%);
+            border: 1px solid var(--neon-green);
+            padding: 25px;
+            border-radius: 20px;
+            text-align: center;
+            margin-top: 20px;
+            box-shadow: 0 0 15px rgba(0, 255, 136, 0.2);
+        }
+        #signal-text { font-size: 30px; font-weight: 900; color: var(--neon-green); text-shadow: 0 0 10px var(--neon-green); }
+        #number-text { font-size: 20px; color: var(--text-gold); margin-top: 10px; font-weight: bold; }
+        #timer-text { font-size: 18px; color: #ff4d4d; margin-top: 15px; font-weight: bold; }
+    </style>
+</head>
+<body>
+
+<div class="app-container">
+    <div id="main-ui">
+        <div class="header">
+            <div class="logo-area">
+                <div class="logo-img"></div>
+                <div>
+                    <strong>Expert owner penel</strong><br>
+                    <small style="color: #555;">Signal Dashboard</small>
+                </div>
+            </div>
+            <div class="ai-badge">AI POWERED</div>
+        </div>
+
+        <h3 style="color: var(--text-gold); font-size: 12px; margin-left: 5px;">PREDICTION GAMES</h3>
+
+        <div class="wingo-header">
+            <div style="display: flex; align-items: center; gap: 10px;">
+                <span style="font-size: 24px;">🔴</span>
+                <div>
+                    <strong>Wingo</strong> <span style="color: var(--neon-green); font-size: 10px;">● ACTIVE</span><br>
+                    <small style="color: #666;">Color prediction • 4 modes</small>
+                </div>
+            </div>
+        </div>
+
+        <div class="modes-grid">
+            <div class="mode-card" onclick="openMode(30)">
+                <div class="time-badge">30S</div>
+                <div style="font-size: 20px;">⚡</div>
+                <strong>Wingo 30 Second</strong>
+                <small>Ultra fast prediction</small>
+            </div>
+
+            <div class="mode-card" onclick="openMode(60)">
+                <div class="time-badge">1M</div>
+                <div style="font-size: 20px;">⏱️</div>
+                <strong>Wingo 1 Min</strong>
+                <small>Standard speed</small>
+            </div>
+
+            <div class="mode-card locked">
+                <div class="lock-icon">🔒</div>
+                <strong>Wingo 3 Min</strong>
+                <small>PREMIUM LOCKED</small>
+            </div>
+
+            <div class="mode-card locked">
+                <div class="lock-icon">🔒</div>
+                <strong>Wingo 5 Min</strong>
+                <small>PREMIUM LOCKED</small>
+            </div>
+        </div>
+
+        <a href="https://t.me/Golden_Whale_Bangladesh09" class="tg-btn">JOIN TELEGRAM CHANNEL</a>
+        <p style="text-align: center; margin-top: 15px; font-size: 12px; color: #888;">Contact: @H_Arafat_Expert_Owner</p>
+    </div>
+
+    <div id="password-ui" class="hidden">
+        <div class="password-box">
+            <div style="font-size: 40px;">🔐</div>
+            <h3>Enter Password</h3>
+            <input type="password" id="passInput" placeholder="Enter Password Here">
+            <button class="unlock-btn" onclick="checkPassword()">UNLOCK NOW</button>
+            <p style="margin-top: 20px;"><a href="https://t.me/Golden_Whale_Bangladesh09" style="color: #0088cc; text-decoration: none;">Get Password From Telegram</a></p>
+        </div>
+    </div>
+
+    <div id="signal-ui" class="hidden">
+        <button onclick="goBack()" style="background: none; border: none; color: var(--neon-green); cursor: pointer; font-weight: bold;">← BACK</button>
+        <div class="result-box">
+            <div id="mode-display" style="color: #888; font-size: 12px; margin-bottom: 10px;">LIVE PREDICTION</div>
+            <div id="signal-text">ANALYZING...</div>
+            <div id="number-text">Number: --</div>
+            <div id="timer-text">00s</div>
+        </div>
+        <div style="text-align: center; margin-top: 20px; color: #00ff88; font-size: 10px; letter-spacing: 1px;">
+            ● PHONE TIME SYNCED 
+        </div>
+    </div>
+</div>
+
+<script>
+    let selectedMode = 30;
+    let timerInterval;
+
+    function openMode(mode) {
+        selectedMode = mode;
+        document.getElementById('main-ui').classList.add('hidden');
+        document.getElementById('password-ui').classList.remove('hidden');
+    }
+
+    function checkPassword() {
+        const pass = document.getElementById('passInput').value;
+        if(pass === "Tafsin21") { 
+            document.getElementById('password-ui').classList.add('hidden');
+            document.getElementById('signal-ui').classList.remove('hidden');
+            startLiveSync();
+        } else {
+            alert("Wrong Password!");
+        }
+    }
+
+    function generateSignal() {
+        const isBig = Math.random() > 0.5;
+        const res = isBig ? "BIG" : "SMALL";
+        // Small হলে ০-৪, Big হলে ৫-৯
+        const num = isBig ? Math.floor(Math.random() * 5) + 5 : Math.floor(Math.random() * 5);
+        
+        document.getElementById('signal-text').innerText = res;
+        document.getElementById('signal-text').style.color = isBig ? "#00ff88" : "#ff4d4d";
+        document.getElementById('number-text').innerText = "Number: " + num;
+    }
+
+    function startLiveSync() {
+        generateSignal();
+        timerInterval = setInterval(() => {
+            const now = new Date();
+            const seconds = now.getSeconds();
+            
+            // ফোনের সেকেন্ড অনুযায়ী বাকি সময় বের করা
+            let remaining = selectedMode - (seconds % selectedMode);
+            
+            document.getElementById('timer-text').innerText = "Wait: " + remaining + "s";
+            
+            // যখন সেকেন্ড ০ হবে (অর্থাৎ ৩০ বা ৬০ পূর্ণ হবে) তখন সিগন্যাল পাল্টাবে
+            if (remaining === selectedMode) {
+                generateSignal();
+            }
+        }, 1000);
+    }
+
+    function goBack() {
+        clearInterval(timerInterval);
+        document.getElementById('signal-ui').classList.add('hidden');
+        document.getElementById('main-ui').classList.remove('hidden');
+        document.getElementById('passInput').value = "";
+    }
+</script>
+
+</body>
+</html>
